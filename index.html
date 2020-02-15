@@ -27,13 +27,21 @@
 </head>
 
 <body>
-    <select id='name' class="form-control selectpicker" data-live-search="true">
-    </select>
+    <select id='name' class="form-control selectpicker" data-live-search="true"></select>
+    <span>bancho api代理未上线。目前想获得完整体验需要<a href="https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf">禁用CORS</a></span>
+    <div class="custom-control custom-switch">
+        <input type="checkbox" class="custom-control-input" id="customSwitch1">
+        <label class="custom-control-label" for="customSwitch1">use bancho api</label>
+    </div>
     <table id='test'></table>
     <script type="text/javascript" src="./mapPoolweb.js"></script>
     <script type="text/javascript">
     const [config, mapPool, EloAdapter] = reqs = [require('config'), require('mapPool'), require('EloAdapter')];
-    const adapter = new EloAdapter({ autoComplete: true });
+    const adapterConfig = { autoComplete: $('.messageCheckbox:checked').val() };
+    const adapter = new EloAdapter(adapterConfig);
+    $('#customSwitch1').on('change.bootstrapSwitch', function(e) {
+        adapter.autoComplete = e.target.checked;
+    });
     const columns = [{
             field: 'index',
             title: '#',
