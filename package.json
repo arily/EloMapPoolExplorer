@@ -1,0 +1,15 @@
+{
+  "name": "mappool",
+  "version": "0.0.0",
+  "description": "osu map pool reader & editor",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "app-module-path": "^2.2.0",
+    "node-osu": "^2.2.0"
+  }
+}
