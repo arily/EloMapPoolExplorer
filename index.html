@@ -56,7 +56,7 @@
             detailFormatter: (index, row) => Object.entries({
                 bancho: (bm) => `https://osu.ppy.sh/beatmapsets/${bm.beatmapSetId}#osu/${bm.id}`,
                 bloodcat: (bm) => `https://bloodcat.com/osu/s/${bm.beatmapSetId}`,
-            }).map(([site, f]) => (bm.beatmapSetId !== undefined) ? `${site}: <a href="${f(row)}">download</a>` : '需要启用bancho api').join("<br>")
+            }).map(([site, f]) => (row.beatmapSetId !== undefined) ? `${site}: <a href="${f(row)}">download</a>` : '需要启用bancho api').join("<br>")
         },
         {
             field: 'difficulty',
