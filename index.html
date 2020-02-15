@@ -134,8 +134,8 @@
         const json = await (await fetch(`http://47.101.168.165:5005/api/mappool/${mappool}`)).json();
         const maps = await adapter.toNodeOsuBeatmapList(json);
         // console.log(maps)
-        loading(false);
         $(`#table`).bootstrapTable('load', maps);
+        loading(false);
     }
     async function test() {
         loading(true,['#name'],'正在加载图池...');
