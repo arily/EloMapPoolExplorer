@@ -80,7 +80,7 @@
             title: 'difficulty',
             width: 80,
             formatter: (value) => `<a href='#'>${parseInt(value.rating * 100) / 100}</a>`,
-            detailFormatter: (index, row) => Object.entries(row.difficulty).map(([index, value]) => `${index}: ${parseInt(value * 100) / 100}`).join("<br>")
+            detailFormatter: (index, row) => Object.entries(row.difficulty).filter(([index, value]) => value >= 0).map(([index, value]) => `${index}: ${parseInt(value * 100) / 100}`).join("<br>")
         },
         {
             title: 'map',
