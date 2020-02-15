@@ -52,17 +52,17 @@
             field: 'id',
             title: 'Beatmap ID',
             width: 100,
-            formatter: (value) => `<a href='https://osu.ppy.sh/b/${value}'>${value}</a>`,
+            formatter: (value) => `<a href='#'>${value}</a>`,
             detailFormatter: (index, row) => Object.entries({
-                bancho: (bm) => `https://osu.ppy.sh/beatmapsets/${bm.beatmapSetId}#osu/${bm.id}`,
-                bloodcat: (bm) => `https://bloodcat.com/osu/s/${bm.beatmapSetId}`,
-            }).map(([site, f]) => (row.beatmapSetId !== undefined) ? `${site}: <a href="${f(row)}">download</a>` : '需要启用bancho api').join("<br>")
+                bancho: (bm) => ([bm.id].every(col => col !== undefined)) ? `<a href = "https://osu.ppy.sh/b/${bm.id}">view topic</a>` : `need bancho api`,
+                bloodcat: (bm) => ([bm.beatmapSetId].every(col => col !== undefined)) ? `<a href="https://bloodcat.com/osu/s/${bm.beatmapSetId}">download</a>` : `need bancho api`,
+            }).map(([site, f]) => `${site}: ${f(row)}`).join("<br>")
         },
         {
             field: 'difficulty',
             title: 'difficulty',
             width: 80,
-            formatter: (value) => parseInt(value.rating * 100) / 100,
+            formatter: (value) => `<a href='#'>${parseInt(value.rating * 100) / 100}</a>`,
             detailFormatter: (index, row) => Object.entries(row.difficulty).map(([index, value]) => `${index}: ${parseInt(value * 100) / 100}`).join("<br>")
         },
         {
