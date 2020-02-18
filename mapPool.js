@@ -20,11 +20,13 @@ const sampleUnrankMap = {
     hasDownload: false,
 }
 
-function mapPool(config) {
-    this.bancho = new api(config.key, config.config);
+function mapPool() {
+    // this.length = this.unshift(...array);
 }
-
 mapPool.prototype = [];
+mapPool.prototype.banchoApi = function(config){
+  this.bancho = new api(config.key, config.config);
+}
 mapPool.prototype.test = async function() {
     this.push(...await this.bancho.getBeatmaps({ b: '765567' }))
     return this;

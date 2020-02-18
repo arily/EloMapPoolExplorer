@@ -339,19 +339,6 @@ function replaceGetterValues (replacer) {
 }
 
 },{}],3:[function(require,module,exports){
-module.exports = {
-	Api: require('./lib/Api.js'),
-	Constants: require('./lib/Constants.js'),
-	Beatmap: require('./lib/base/Beatmap.js'),
-	Score: require('./lib/base/Score.js'),
-	User: require('./lib/base/User.js'),
-	Match: require('./lib/base/Match.js'),
-	Game: require('./lib/base/Game.js'),
-	MultiplayerScore: require('./lib/base/MultiplayerScore.js'),
-	Event: require('./lib/base/Event.js')
-};
-
-},{"./lib/Api.js":4,"./lib/Constants.js":5,"./lib/base/Beatmap.js":6,"./lib/base/Event.js":7,"./lib/base/Game.js":8,"./lib/base/Match.js":9,"./lib/base/MultiplayerScore.js":10,"./lib/base/Score.js":11,"./lib/base/User.js":12}],4:[function(require,module,exports){
 const request = require('superagent');
 const userAgent = `node-osu v${require('../package.json').version} (https://github.com/brussell98/node-osu)`;
 const Beatmap = require('./base/Beatmap.js');
@@ -579,7 +566,7 @@ class Api {
 
 module.exports = Api;
 
-},{"../package.json":14,"./base/Beatmap.js":6,"./base/Match.js":9,"./base/Score.js":11,"./base/User.js":12,"superagent":16}],5:[function(require,module,exports){
+},{"../package.json":13,"./base/Beatmap.js":5,"./base/Match.js":8,"./base/Score.js":10,"./base/User.js":11,"superagent":15}],4:[function(require,module,exports){
 module.exports = {
 	/**
 	 * An enum of mods with their bitwise representation
@@ -770,7 +757,7 @@ module.exports = {
 	}
 };
 
-},{}],6:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 const { getNumeric } = require('../utils.js');
 const Constants = require('../Constants.js');
 
@@ -902,7 +889,7 @@ class Beatmap {
 
 module.exports = Beatmap;
 
-},{"../Constants.js":5,"../utils.js":13}],7:[function(require,module,exports){
+},{"../Constants.js":4,"../utils.js":12}],6:[function(require,module,exports){
 const { getNumeric } = require('../utils.js');
 
 /**
@@ -936,7 +923,7 @@ class Event {
 
 module.exports = Event;
 
-},{"../utils.js":13}],8:[function(require,module,exports){
+},{"../utils.js":12}],7:[function(require,module,exports){
 const MultiplayerScore = require('./MultiplayerScore.js');
 const Constants = require('../Constants.js');
 
@@ -1002,7 +989,7 @@ class Game {
 
 module.exports = Game;
 
-},{"../Constants.js":5,"./MultiplayerScore.js":10}],9:[function(require,module,exports){
+},{"../Constants.js":4,"./MultiplayerScore.js":9}],8:[function(require,module,exports){
 const Game = require('./Game.js');
 
 /**
@@ -1044,7 +1031,7 @@ class Match {
 
 module.exports = Match;
 
-},{"./Game.js":8}],10:[function(require,module,exports){
+},{"./Game.js":7}],9:[function(require,module,exports){
 const { getNumeric } = require('../utils.js');
 const Constants = require('../Constants.js');
 
@@ -1107,7 +1094,7 @@ class MultiplayerScore {
 
 module.exports = MultiplayerScore;
 
-},{"../Constants.js":5,"../utils.js":13}],11:[function(require,module,exports){
+},{"../Constants.js":4,"../utils.js":12}],10:[function(require,module,exports){
 const { getNumeric } = require('../utils.js');
 const { Mods, AccuracyMethods } = require('../Constants.js');
 
@@ -1214,7 +1201,7 @@ class Score {
 
 module.exports = Score;
 
-},{"../Constants.js":5,"../utils.js":13}],12:[function(require,module,exports){
+},{"../Constants.js":4,"../utils.js":12}],11:[function(require,module,exports){
 const { getNumeric } = require('../utils.js');
 const Event = require('./Event.js');
 
@@ -1299,7 +1286,7 @@ class User {
 
 module.exports = User;
 
-},{"../utils.js":13,"./Event.js":7}],13:[function(require,module,exports){
+},{"../utils.js":12,"./Event.js":6}],12:[function(require,module,exports){
 module.exports = {
 	getNumeric(parseNumeric) {
 		return parseNumeric
@@ -1308,7 +1295,7 @@ module.exports = {
 	}
 };
 
-},{}],14:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports={
   "_from": "node-osu@^2.2.0",
   "_id": "node-osu@2.2.0",
@@ -1372,7 +1359,7 @@ module.exports={
   "version": "2.2.0"
 }
 
-},{}],15:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 "use strict";
 
 function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
@@ -1411,7 +1398,7 @@ Agent.prototype._setDefaults = function (req) {
 
 module.exports = Agent;
 
-},{}],16:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -2432,7 +2419,7 @@ request.put = function (url, data, fn) {
   return req;
 };
 
-},{"./agent-base":15,"./is-object":17,"./request-base":18,"./response-base":19,"component-emitter":1,"fast-safe-stringify":2}],17:[function(require,module,exports){
+},{"./agent-base":14,"./is-object":16,"./request-base":17,"./response-base":18,"component-emitter":1,"fast-safe-stringify":2}],16:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -2450,7 +2437,7 @@ function isObject(obj) {
 
 module.exports = isObject;
 
-},{}],18:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 "use strict";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -3204,7 +3191,7 @@ RequestBase.prototype._setTimeouts = function () {
   }
 };
 
-},{"./is-object":17}],19:[function(require,module,exports){
+},{"./is-object":16}],18:[function(require,module,exports){
 "use strict";
 
 /**
@@ -3336,7 +3323,7 @@ ResponseBase.prototype._setStatusProperties = function (status) {
   this.unprocessableEntity = status === 422;
 };
 
-},{"./utils":20}],20:[function(require,module,exports){
+},{"./utils":19}],19:[function(require,module,exports){
 "use strict";
 
 /**
@@ -3408,193 +3395,7 @@ exports.cleanHeader = function (header, changesOrigin) {
   return header;
 };
 
-},{}],21:[function(require,module,exports){
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) { return [] }
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-},{}],"EloAdapter":[function(require,module,exports){
+},{}],"elo-adapter":[function(require,module,exports){
 const node_osu = require('node-osu');
 const osu = node_osu.Api
 
@@ -3645,6 +3446,7 @@ EloAdapter.prototype.mapping = function(map) {
 
 EloAdapter.prototype.toNodeOsuBeatmap = async function(map) {
     const mapped = this.mapping(map);
+    mapped.__proto__ = node_osu.Beatmap.prototype;
     if (this.autoComplete) {
         if (Object.entries(mapped).some(([prop, value]) => value == undefined)) return this.apiGetMap(mapped);
         else if ([mapped.difficulty, mapped.length].some((sub) => Object.entries(sub).map(([prop, value]) => value == undefined || value < 0))) return this.apiGetMap(mapped);
@@ -3674,22 +3476,7 @@ module.exports = EloAdapter;
 //     }]))
 // }
 // test();
-},{"node-osu":3}],"config":[function(require,module,exports){
-(function (process){
-const api = {
-    key: '27caa4993a4430b2e63762bdd5e6b9643ddf7679',
-    config: {
-        parseNumeric: true // Parse numeric values into numbers/floats, excluding ids
-    }
-}
-const port = process.env.PORT || 13333
-
-module.exports = {
-    api,
-    port
-};
-}).call(this,require('_process'))
-},{"_process":21}],"mapPool":[function(require,module,exports){
+},{"node-osu":"node-osu"}],"mapPool":[function(require,module,exports){
 const api = require('node-osu').Api
 
 const sampleUnrankMap = {
@@ -3712,11 +3499,13 @@ const sampleUnrankMap = {
     hasDownload: false,
 }
 
-function mapPool(config) {
-    this.bancho = new api(config.key, config.config);
+function mapPool() {
+    // this.length = this.unshift(...array);
 }
-
 mapPool.prototype = [];
+mapPool.prototype.banchoApi = function(config){
+  this.bancho = new api(config.key, config.config);
+}
 mapPool.prototype.test = async function() {
     this.push(...await this.bancho.getBeatmaps({ b: '765567' }))
     return this;
@@ -3742,4 +3531,17 @@ mapPool.prototype.splitByBracket = function() {
 
 
 module.exports = mapPool;
-},{"node-osu":3}]},{},[]);
+},{"node-osu":"node-osu"}],"node-osu":[function(require,module,exports){
+module.exports = {
+	Api: require('./lib/Api.js'),
+	Constants: require('./lib/Constants.js'),
+	Beatmap: require('./lib/base/Beatmap.js'),
+	Score: require('./lib/base/Score.js'),
+	User: require('./lib/base/User.js'),
+	Match: require('./lib/base/Match.js'),
+	Game: require('./lib/base/Game.js'),
+	MultiplayerScore: require('./lib/base/MultiplayerScore.js'),
+	Event: require('./lib/base/Event.js')
+};
+
+},{"./lib/Api.js":3,"./lib/Constants.js":4,"./lib/base/Beatmap.js":5,"./lib/base/Event.js":6,"./lib/base/Game.js":7,"./lib/base/Match.js":8,"./lib/base/MultiplayerScore.js":9,"./lib/base/Score.js":10,"./lib/base/User.js":11}]},{},[]);
