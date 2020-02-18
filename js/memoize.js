@@ -26,12 +26,12 @@ Function.prototype.memoized = async function() {
 
   // Check if result is cached
   if (this._values[key] !== undefined) {
-    console.log('Loaded from cache: %s => %s', key, this._values[key]);
+    //console.log('Loaded from cache: %s => %s', key, this._values[key]);
     return this._values[key];
 
   // Check if result is in local storage.
   } else if (supportLocalStorage() && localStorage[this.name+':'+key]) {
-    console.log('Loaded from local storage: %s => %s', key, localStorage[this.name+':'+key]);
+    //console.log('Loaded from local storage: %s => %s', key, localStorage[this.name+':'+key]);
     return JSON.parse(localStorage[this.name+':'+key]);
 
     // Call the original function if result not found and store result.
@@ -41,7 +41,7 @@ Function.prototype.memoized = async function() {
     if (supportLocalStorage()) {
       localStorage[this.name+':'+key] = JSON.stringify(value);
     }
-    console.log('New result: %s => %s', key, value);
+    //console.log('New result: %s => %s', key, value);
     return this._values[key] = value;
   }
 };

@@ -22,16 +22,21 @@ const getMapFromEloCache = getMapFromElo.memoize();
 update elo map pool table
 */
 async function updateTable(mappool) {
+    const timming = {
+        start: new Date().getTime(),
+    }
     loading(true);
     let json = await (await fetch(`http://47.101.168.165:5005/api/mappool/${mappool}`)).json();
-    console.log(json);
+
     json = await Promise.all(json.map(async map => getMapFromEloCache(map)));
-    console.log(json)
+
     // let pool = new MapPool();
     // pool.unshift(...json);
     // console.log(pool);
     $(`#table`).bootstrapTable('load', json);
     loading(false);
+    timming.end = new Date().getTime();
+    console.log(`updateTable ${mappool}(${json.length} maps), ${timming.end - timming.start} ms`);
 }
 /*
 init function
