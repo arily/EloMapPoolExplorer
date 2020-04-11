@@ -1,6 +1,13 @@
-/*
-display a loading screen.
-*/
+const [osu, MapPool, EloAdapter] = [require('node-osu'), require('mapPool'), require('elo-adapter')];
+const adapterConfig = { autoComplete: true };
+const adapter = new EloAdapter(adapterConfig);
+
+/**
+ * display a loading.
+ * @param bool loading true if it's loading now.
+ * @param [string: css selector] toggle elements that should be hide
+ * @param string message
+ */
 async function loading(loading, toggle = ['#table'], message = 'loading...') {
     if (loading) {
         toggle.map((s) => $(s).css('display', 'none'));
@@ -13,22 +20,27 @@ async function loading(loading, toggle = ['#table'], message = 'loading...') {
 }
 
 async function getMapFromElo(map) {
-    return ((res = await (await fetch(`http://47.101.168.165:5005/api/map/${map.map_id}`)).json()) !== null) ?
-        new osu.Beatmap({ parseNumeric: true }, res[0]) :
-        adapter.toNodeOsuBeatmap(map);
+    return adapter.toNodeOsuBeatmap(map);
 }
 const getMapFromEloCache = getMapFromElo.memoize();
-/*
-update elo map pool table
-*/
+/**
+ * update elo map pool table
+ */
 async function updateTable(mappool) {
     const timming = {
         start: new Date().getTime(),
     }
     loading(true);
-    let json = await (await fetch(`http://47.101.168.165:5005/api/mappool/${mappool}`)).json();
+    let json = await fetch(`http://47.101.168.165:5005/api/mappool/${mappool}`).then(res => res.json());
 
-    json = await Promise.all(json.map(async map => getMapFromEloCache(map)));
+    json = await Promise.all(json.map(async (map, index) => {
+        const additional = {
+            index: map.index || index,
+            bracket: map.mods || 'undefined',
+        }
+        const mapResult = await getMapFromEloCache(map);
+        return Object.assign(mapResult,additional);
+    }));
 
     // let pool = new MapPool();
     // pool.unshift(...json);
@@ -38,17 +50,19 @@ async function updateTable(mappool) {
     timming.end = new Date().getTime();
     console.log(`updateTable ${mappool}(${json.length} maps), ${timming.end - timming.start} ms`);
 }
-/*
-init function
-*/
+/**
+ *init function
+ */
 async function init() {
     loading(true, ['#name'], '正在加载图池...');
+
     const all = await (await fetch('http://47.101.168.165:5005/api/tourney/ewc')).json();
     const pools = await Promise.all(all.map(async tour => ({
         pools: await (await fetch(`http://47.101.168.165:5005/api/mappool/mplist/${tour}`)).json(),
         tournament: tour,
     })));
     loading(true, [], '正在绘图...');
+
     // console.log(pools)
     const groups = pools.map(({ tournament, pools }) => {
         const g = document.createElement("OPTGROUP");
@@ -62,6 +76,7 @@ async function init() {
         })
         return g;
     })
+
     const defOpt = document.createElement("OPTION");
     defOpt.innerHTML = 'select pools to view';
     const def = document.createElement("OPTGROUP");
@@ -74,17 +89,13 @@ async function init() {
     $(function() {
         $("#name").on("changed.bs.select", function(e, clickedIndex, newValue, oldValue) {
             const selectedD = $(this).find('option').eq(clickedIndex).text();
-            // console.log('selectedD: ' + selectedD + '  newValue: ' + newValue + ' oldValue: ' + oldValue);
             updateTable(selectedD);
         });
     });
+
     loading(false, ['#name']);
 }
-// const [config, mapPool, EloAdapter] = reqs = [require('config'), require('mapPool'), require('EloAdapter')];
 
-const [osu, MapPool, EloAdapter] = [require('node-osu'), require('mapPool'), require('elo-adapter')];
-const adapterConfig = { autoComplete: false };
-const adapter = new EloAdapter(adapterConfig);
 // $('#customSwitch1').on('change.bootstrapSwitch', function(e) {
 //     adapter.autoComplete = e.target.checked;
 // });
